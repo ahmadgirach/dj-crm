@@ -1,5 +1,5 @@
 from django.urls import path
-from leads.views import index, lead_detail, lead_create, lead_update
+from .views import index, lead_detail, lead_create, lead_update
 
 urlpatterns = [
     path('', index),

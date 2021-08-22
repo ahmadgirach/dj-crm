@@ -20,8 +20,7 @@ def lead_create(request):
     form = LeadModelForm()
 
     if request.method == "POST":
-        data = request.POST.copy()
-        form = LeadModelForm(data)
+        form = LeadModelForm(request.POST)
 
         if form.is_valid():
             form.save()
@@ -34,7 +33,7 @@ def lead_create(request):
 
 def lead_update(request, pk):
     lead = Lead.objects.get(pk=pk)
-    form = LeadModelForm()
+    form = LeadModelForm(instance=lead)
 
     if request.method == "POST":
         form = LeadModelForm(request.POST, instance=lead)
