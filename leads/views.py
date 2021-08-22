@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 
 from .forms import LeadForm, LeadModelForm
@@ -45,6 +46,16 @@ def lead_update(request, pk):
     context = {"form": form, "lead": lead}
 
     return render(request, "leads/lead_update.html", context=context)
+
+
+def lead_delete(request, pk):
+    lead = Lead.objects.get(pk=pk)
+
+    if lead:
+        lead.delete()
+        return redirect("/leads")
+
+    return HttpResponse("Unable to Delete!")
 
 
 # def lead_create(request):
