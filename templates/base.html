@@ -10,11 +10,14 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>DJ CRM</title>
-    {% comment %} <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> {% endcomment %} {% endcomment %}
+    {% comment %} <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> {% endcomment %}
     <link href="{% static 'css/tailwind.min.css' %}" rel="stylesheet">
   </head>
   <body>
+    <div class="max-w-7xl mx-auto">
+    {% include 'navbar.html' %}
     {% block content %}
     {% endblock content %}
+    </div>
   </body>
 </html>
