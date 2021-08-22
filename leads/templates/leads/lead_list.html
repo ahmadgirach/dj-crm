@@ -1,30 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Leads</title>
 
     <style>
-        .lead {
-            padding: 10px 6px;
-            margin-top: 10px;
-            background-color: #f6f6f6;
-            width: 100%;
-        }
+      .lead {
+        padding: 10px 6px;
+        margin-top: 10px;
+        background-color: #f6f6f6;
+        width: 100%;
+      }
     </style>
-</head>
-<body>
-    <a href="/leads/create">Create New Lead</a>
+  </head>
+  <body>
+    <a href="{% url 'leads:lead-create' %}">Create New Lead</a>
     <h1>This is our all Leads</h1>
     {% for lead in leads %}
     <div class="lead">
-        <a href="/leads/{{ lead.pk }}">
-            {{ lead.first_name }} {{ lead.last_name }}
-        </a>
+      <a href="{% url 'leads:lead-detail' lead.pk %}">
+        {{ lead.first_name }} {{ lead.last_name }}
+      </a>
     </div>
     {% endfor %}
-</body>
+  </body>
 </html>
