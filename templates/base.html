@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,14 +10,8 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>DJ CRM</title>
-    <style>
-      .lead {
-        padding: 10px 6px;
-        margin-top: 10px;
-        background-color: #f6f6f6;
-        width: 100%;
-      }
-    </style>
+    {% comment %} <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> {% endcomment %} {% endcomment %}
+    <link href="{% static 'css/tailwind.min.css' %}" rel="stylesheet">
   </head>
   <body>
     {% block content %}
