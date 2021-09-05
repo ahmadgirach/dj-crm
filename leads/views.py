@@ -2,8 +2,23 @@ from django.core.mail import send_mail
 from django.urls import reverse
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 
-from .forms import LeadModelForm
+from .forms import LeadModelForm, SignupForm
 from .models import Lead
+
+
+class SignupView(CreateView):
+    template_name = "registration/signup.html"
+    """
+    SINCE WE DON'T USE DEFAULT USER MODEL, WE CAN'T USE DEFAULT USER SIGNUP FORM... IT WILL RAISE AN ERROR WHILE
+    REGISTRATION.
+
+    HENCE WE OVERRIDE THE DEFAULT FORM AND ASSIGN OUR USER MODEL. THAT WAY IT WILL WORK.
+    """
+    # form_class = UserCreationForm
+    form_class = SignupForm
+
+    def get_success_url(self):
+        return reverse("login")
 
 
 class LandingPageView(TemplateView):
