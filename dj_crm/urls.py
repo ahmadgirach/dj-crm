@@ -28,4 +28,5 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="logout"),
     path("", LandingPageView.as_view(), name="landing-page"),
     path("leads/", include("leads.urls", namespace="leads")),
+    path("agents/", include("agents.urls", namespace="agents")),
 ]

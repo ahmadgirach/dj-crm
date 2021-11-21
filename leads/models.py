@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 
 
 class User(AbstractUser):
-    phone_number = models.CharField(max_length=15)
+    pass
 
 
 class UserProfile(models.Model):
