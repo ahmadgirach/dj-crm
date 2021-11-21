@@ -24,3 +24,27 @@ class AgentCreateView(LoginRequiredMixin, generic.CreateView):
         agent.organization = self.request.user.userprofile
         agent.save()
         return super(AgentCreateView, self).form_valid(form)
+
+
+class AgentDetailView(LoginRequiredMixin, generic.DetailView):
+    context_object_name = "agent"
+    queryset = Agent.objects.all()
+    template_name = "agents/agent_detail.html"
+
+
+class AgentUpdateView(LoginRequiredMixin, generic.UpdateView):
+    form_class = AgentModelForm
+    queryset = Agent.objects.all()
+    template_name = "agents/agent_update.html"
+
+    def get_success_url(self):
+        return reverse("agents:agent-list")
+
+
+class AgentDeleteView(LoginRequiredMixin, generic.DeleteView):
+    form_class = AgentModelForm
+    queryset = Agent.objects.all()
+    template_name = "agents/agent_delete.html"
+
+    def get_success_url(self):
+        return reverse("agents:agent-list")
