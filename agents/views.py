@@ -8,8 +8,12 @@ from .forms import AgentModelForm
 
 
 class AgentListView(LoginRequiredMixin, generic.ListView):
-    queryset = Agent.objects.all()
     template_name = "agents/agent_list.html"
+
+    def get_queryset(self):
+        organization = self.request.user.userprofile
+        """ SHOW ONLY AGENTS WHICH BELONGS TO CURRENT LOGGED IN USER """
+        return Agent.objects.filter(organization=organization)
 
 
 class AgentCreateView(LoginRequiredMixin, generic.CreateView):
