@@ -5,9 +5,13 @@
         <div>
             <h1 class="text-4xl text-gray-800">Leads</h1>
         </div>
-        <div>
-            <a class="text-gray hover:text-blue-400" href="{% url 'leads:lead-create' %}">Create a new Lead</a>
-        </div> 
+        {% if request.user.is_organiser %}
+          <div>
+              <a class="text-gray hover:text-blue-400" href="{% url 'leads:lead-create' %}">
+                Create a new Lead
+              </a>
+          </div>
+        {% endif %}
     </div>
     <div class="flex flex-wrap -m-4">
       {% for lead in leads %}

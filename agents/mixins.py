@@ -8,6 +8,6 @@ class OrganiserAndLoginRequiredMixin(AccessMixin):
         current_user = request.user
 
         if not (current_user.is_authenticated or current_user.is_organiser):
-            return redirect("login")
+            return redirect("leads:lead-list")
 
         return super().dispatch(request, *args, **kwargs)
