@@ -12,7 +12,7 @@ class LeadModelForm(forms.ModelForm):
         managed = True
         verbose_name = "Lead"
         verbose_name_plural = "Leads"
-        fields = ("first_name", "last_name", "age", "agent")
+        fields = ("first_name", "last_name", "email", "phone_number", "age", "agent", "description")
 
 
 class SignupForm(UserCreationForm):
