@@ -189,11 +189,11 @@ class CategoryDetailView(LoginRequiredMixin, DetailView):
 
         return queryset
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(CategoryDetailView, self).get_context_data(object_list=object_list, kwargs=kwargs)
-        """ `leads` is the related_name given in Lead model. This is special syntax to fetch in ForeignKey fields. """
-        leads = self.get_object().leads.all()
-        context.update({
-            "leads": leads
-        })
-        return context
+    # def get_context_data(self, *, object_list=None, **kwargs):
+    #     context = super(CategoryDetailView, self).get_context_data(object_list=object_list, kwargs=kwargs)
+    #     """ `leads` is the related_name given in Lead model. This is special syntax to fetch in ForeignKey fields. """
+    #     leads = self.get_object().leads.all()
+    #     context.update({
+    #         "leads": leads
+    #     })
+    #     return context
