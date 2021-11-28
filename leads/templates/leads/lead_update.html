@@ -1,4 +1,7 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% load tailwind_filters %}
+
+{% block content %}
 <section class="text-gray-600 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -31,25 +34,15 @@
           </a>
         </div>
         <form method="post">
-          {% csrf_token %} {{ form.as_p }}
-          <button type="submit">Submit</button>
+          {% csrf_token %}
+          {{ form | crispy }}
+          <button class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md text-white" type="submit">
+            Submit
+          </button>
         </form>
         <a
           href="{% url 'leads:lead-delete' lead.pk %}"
-          class="
-            flex
-            ml-auto
-            text-white
-            bg-indigo-500
-            border-0
-            py-2
-            px-6
-            focus:outline-none
-            hover:bg-indigo-600
-            rounded
-            mt-3
-          "
-        >
+          class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md text-white">
           Delete
         </a>
       </div>

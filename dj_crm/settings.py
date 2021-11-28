@@ -39,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # THIRD PARTY APPS
+    'crispy_forms',
+    'crispy_tailwind',
+
+    # LOCAL APPS
     'leads',
     'agents',
 ]
@@ -143,3 +149,8 @@ LOGOUT_REDIRECT_URL = "/"
 
 """ LOGIN PAGE REDIRECT """
 LOGIN_URL = "/login"
+
+
+""" CRISPY FORMS RELATED"""
+CRISPY_TEMPLATE_PACK = "tailwind"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
