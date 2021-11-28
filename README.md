@@ -1,5 +1,5 @@
 # dj-crm
-A CRM app built with Django...
+A CRM app built with Django...TailwindCSS templates used in this project are from [Tailblocks](https://tailblocks.cc).
 
 ### Topics Learnt
 - CRUD APIs
@@ -8,6 +8,8 @@ A CRM app built with Django...
 - Custom Mixins
 - Forms / Django Crispy Forms
 - Send Email
+- Overriding existing auth APIs
 
 ### Tutorial
-This project was part of a [YouTube](https://www.youtube.com/watch?v=fOukA4Qh9QA) Tutorial from JustDjango Channel.
+This project was part of a YouTube Tutorial from JustDjango Channel. Watch it [here](https://www.youtube.com/watch?v=fOukA4Qh9QA).
+Also haven't done postgres integration and deployment shown in that Tutorial.
