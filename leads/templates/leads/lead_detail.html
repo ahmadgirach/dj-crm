@@ -20,8 +20,8 @@
             "
             >Overview</a
           >
-          <a class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
-            Reviews
+          <a href="{% url 'leads:lead-category-update' lead.pk %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
+            Category
           </a>
           <a
             href="{% url 'leads:lead-update' lead.pk %}"

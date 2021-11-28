@@ -7,7 +7,7 @@ from django.views.generic import (
 
 from agents.mixins import OrganiserAndLoginRequiredMixin
 
-from .forms import LeadModelForm, SignupForm, AssignAgentForm
+from .forms import LeadModelForm, SignupForm, AssignAgentForm, LeadCategoryUpdateForm
 from .models import Lead, Category
 
 
@@ -197,3 +197,25 @@ class CategoryDetailView(LoginRequiredMixin, DetailView):
     #         "leads": leads
     #     })
     #     return context
+
+
+class LeadCategoryUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = "leads/lead_category_update.html"
+    form_class = LeadCategoryUpdateForm
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.is_organiser:
+            queryset = Lead.objects.filter(organization=user.userprofile)
+        else:
+            queryset = Lead.objects.filter(organization=user.agent.organization)
+            """ FILTER FOR THE AGENT THAT'S LOGGED IN """
+            queryset = queryset.filter(agent__user=user)
+
+        return queryset
+
+    def get_success_url(self):
+        return reverse("leads:lead-detail", kwargs={
+            "pk": self.get_object().pk
+        })

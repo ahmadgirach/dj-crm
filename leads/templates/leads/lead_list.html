@@ -4,6 +4,7 @@
     <div class="w-full mb-6 py-6 flex justify-between items-center border-b border-gray-200">
         <div>
             <h1 class="text-4xl text-gray-800">Leads</h1>
+            <a class="text-gray hover:text-blue-400" href="{% url 'leads:category-list' %}">View Categories</a>
         </div>
         {% if request.user.is_organiser %}
           <div>
