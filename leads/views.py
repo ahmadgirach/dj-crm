@@ -8,7 +8,7 @@ from django.views.generic import (
 from agents.mixins import OrganiserAndLoginRequiredMixin
 
 from .forms import LeadModelForm, SignupForm, AssignAgentForm
-from .models import Lead
+from .models import Lead, Category
 
 
 class SignupView(CreateView):
@@ -142,3 +142,34 @@ class AssignAgentView(OrganiserAndLoginRequiredMixin, FormView):
         lead.agent = agent
         lead.save()
         return super(AssignAgentView, self).form_valid(form)
+
+
+class CategoryListView(LoginRequiredMixin, ListView):
+    template_name = "leads/category_list.html"
+    context_object_name = "categories"
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.is_organiser:
+            queryset = Category.objects.filter(organization=user.userprofile)
+        else:
+            queryset = Category.objects.filter(organization=user.agent.organization)
+
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CategoryListView, self).get_context_data(object_list=object_list, kwargs=kwargs)
+
+        user = self.request.user
+
+        if user.is_organiser:
+            queryset = Lead.objects.filter(organization=user.userprofile, agent__isnull=False)
+        else:
+            queryset = Lead.objects.filter(organization=user.agent.organization, agent__isnull=False)
+
+        context.update({
+            "unassigned_leads_count": queryset.filter(category__isnull=True).count()
+        })
+
+        return context
